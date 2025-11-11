@@ -8,7 +8,7 @@ const getAI = () => {
   if (!ai) {
     // FIX: The API key must be obtained exclusively from the environment variable `process.env.API_KEY`.
     if (!process.env.API_KEY) {
-      throw new Error("API_KEY is not set in environment variables.");
+      throw new Error("Falta la clave de API de Gemini. Por favor, verifica la configuración de tu entorno y asegúrate de que la variable API_KEY esté definida.");
     }
     ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
