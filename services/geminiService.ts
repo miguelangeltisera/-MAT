@@ -39,6 +39,7 @@ export const getChatResponse = async (message: string): Promise<string> => {
   
   try {
     if(!chat) throw new Error("Chat not initialized");
+    // Fix: The `sendMessage` method expects an object with a `message` property, not a plain string.
     const result: GenerateContentResponse = await chat.sendMessage({ message });
     return result.text;
   } catch (error) {
