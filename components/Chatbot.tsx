@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ChatMessage } from '../types';
 import { getChatResponse, startChat } from '../services/geminiService';
@@ -22,7 +21,7 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
       console.error("Initialization Error:", error);
       setMessages([{
         role: 'model',
-        content: "Error de inicialización: La API Key de Gemini no se ha configurado correctamente. Por favor, verifica la configuración para poder interactuar conmigo."
+        content: "Error de inicialización: No he podido conectarme a la red de IA. Por favor, comprueba la configuración de la API Key o inténtalo de nuevo más tarde."
       }]);
     }
   }, []);

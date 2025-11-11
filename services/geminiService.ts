@@ -1,4 +1,4 @@
-import { GoogleGenAI, Chat } from "@google/genai";
+import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 import { ChatMessage } from '../types';
 
 let ai: GoogleGenAI | null = null;
@@ -6,8 +6,9 @@ let chat: Chat | null = null;
 
 const getAI = () => {
   if (!ai) {
+    // FIX: The API key must be obtained exclusively from the environment variable `process.env.API_KEY`.
     if (!process.env.API_KEY) {
-      throw new Error("API_KEY environment variable not set");
+      throw new Error("API_KEY is not set in environment variables.");
     }
     ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
@@ -20,7 +21,10 @@ export const startChat = (history: ChatMessage[]) => {
   const aiInstance = getAI();
   chat = aiInstance.chats.create({
     model: 'gemini-2.5-flash',
-    systemInstruction: SYSTEM_INSTRUCTION,
+    // FIX: `systemInstruction` must be inside a `config` object.
+    config: {
+        systemInstruction: SYSTEM_INSTRUCTION,
+    },
     history: history.map(msg => ({
       role: msg.role,
       parts: [{ text: msg.content }],
@@ -35,7 +39,8 @@ export const getChatResponse = async (message: string): Promise<string> => {
   
   try {
     if(!chat) throw new Error("Chat not initialized");
-    const result = await chat.sendMessage(message);
+    // FIX: `sendMessage` expects an object with a `message` property, not a string.
+    const result: GenerateContentResponse = await chat.sendMessage({ message });
     return result.text;
   } catch (error) {
     console.error("Error getting chat response:", error);
