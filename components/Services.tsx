@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Service } from '../types';
 import { FilmIcon, WandIcon, EditIcon, VrIcon } from './icons';
@@ -30,7 +29,7 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
   const Icon = service.icon;
   return (
     <div 
-      className="bg-slate-800/60 backdrop-blur-sm border border-cyan-500/30 p-6 rounded-lg transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] hover:-translate-y-2 animate-fade-in-up"
+      className="bg-slate-800/60 backdrop-blur-sm border border-cyan-500/30 p-6 rounded-lg transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(34,211,238,0.4)] hover:-translate-y-2 hover:scale-105 animate-fade-in-up"
       style={{ animationDelay: `${index * 150}ms` }}
     >
       <div className="flex items-center justify-center w-12 h-12 bg-cyan-900/50 border border-cyan-500/50 rounded-lg mb-4">

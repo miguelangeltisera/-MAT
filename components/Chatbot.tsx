@@ -12,6 +12,7 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isConfigured, setIsConfigured] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,10 +20,7 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
       startChat([]); // Initialize chat history
     } catch (error) {
       console.error("Initialization Error:", error);
-      setMessages([{
-        role: 'model',
-        content: "Error de inicialización: No he podido conectarme a la red de IA. Por favor, comprueba la configuración de la API Key o inténtalo de nuevo más tarde."
-      }]);
+      setIsConfigured(false);
     }
   }, []);
 
@@ -31,7 +29,7 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
   }, [messages]);
 
   const handleSendMessage = useCallback(async () => {
-    if (input.trim() === '' || isLoading) return;
+    if (input.trim() === '' || isLoading || !isConfigured) return;
 
     const userMessage: ChatMessage = { role: 'user', content: input };
     setMessages(prev => [...prev, userMessage]);
@@ -48,7 +46,7 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
     } finally {
       setIsLoading(false);
     }
-  }, [input, isLoading]);
+  }, [input, isLoading, isConfigured]);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -59,8 +57,17 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
   return (
     <div ref={chatContainerRef} id="chatbot" className="container mx-auto max-w-4xl py-16 md:py-24 px-4 scroll-mt-20">
       <div className="bg-slate-950/60 backdrop-blur-md border border-cyan-500/30 rounded-xl shadow-lg shadow-cyan-500/10 overflow-hidden flex flex-col h-[70vh]">
-        <div className="p-4 border-b border-cyan-500/30">
-          <h3 className="text-xl font-bold text-center text-cyan-300">Consola de Interacción: MAT-X</h3>
+        <div className="p-4 border-b border-cyan-500/30 flex justify-between items-center">
+          <h3 className="text-xl font-bold text-cyan-300">Consola de Interacción: MAT-X</h3>
+          {!isConfigured && (
+             <div className="flex items-center gap-2 text-sm text-red-400">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <span>OFFLINE</span>
+             </div>
+          )}
         </div>
         <div className="flex-1 p-4 md:p-6 space-y-4 overflow-y-auto">
           {messages.map((msg, index) => (
@@ -86,20 +93,20 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
           <div ref={messagesEndRef} />
         </div>
         <div className="p-4 border-t border-cyan-500/30 mt-auto">
-          <div className="flex items-center bg-slate-800/50 border border-cyan-600/50 rounded-full focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-500/50 transition-all">
+          <div className={`flex items-center bg-slate-800/50 border ${isConfigured ? 'border-cyan-600/50 focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-500/50' : 'border-red-500/40'} rounded-full transition-all`}>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Escribe tu consulta aquí..."
-              className="flex-1 w-full bg-transparent text-slate-100 placeholder-slate-400/60 py-3 px-5 focus:outline-none"
-              disabled={isLoading}
+              placeholder={isConfigured ? "Escribe tu consulta aquí..." : "Error de conexión: se requiere configuración de API."}
+              className="flex-1 w-full bg-transparent text-slate-100 placeholder-slate-400/60 py-3 px-5 focus:outline-none disabled:placeholder-red-400/60"
+              disabled={isLoading || !isConfigured}
             />
             <button
               onClick={handleSendMessage}
-              disabled={isLoading || input.trim() === ''}
-              className="p-3 m-1 text-cyan-400 rounded-full transition-colors duration-200 enabled:hover:bg-cyan-500/20 disabled:text-cyan-700/40 disabled:cursor-not-allowed"
+              disabled={isLoading || input.trim() === '' || !isConfigured}
+              className="p-3 m-1 text-cyan-400 rounded-full transition-colors duration-200 enabled:hover:bg-cyan-500/20 disabled:text-gray-500 disabled:cursor-not-allowed"
             >
               <SendIcon className="w-6 h-6" />
             </button>
