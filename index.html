@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -26,6 +25,15 @@
 </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Injects the API Key into a simulated process.env object for the browser environment.
+      // This makes the key accessible to the Gemini service while keeping the core TypeScript code clean.
+      window.process = {
+        env: {
+          API_KEY: 'AIzaSyBmWBAdJLp5CGNGlyqcLS9STVCqJo5kd5U'
+        }
+      };
+    </script>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
