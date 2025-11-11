@@ -6,11 +6,12 @@ let chat: Chat | null = null;
 
 const getAI = () => {
   if (!ai) {
-    // FIX: The API key must be obtained exclusively from the environment variable `process.env.API_KEY`.
-    if (!process.env.API_KEY) {
+    // Explicitly read from the window object to prevent build-time replacement issues.
+    const apiKey = (window as any).process?.env?.API_KEY;
+    if (!apiKey) {
       throw new Error("Falta la clave de API de Gemini. Por favor, verifica la configuración de tu entorno y asegúrate de que la variable API_KEY esté definida.");
     }
-    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    ai = new GoogleGenAI({ apiKey: apiKey });
   }
   return ai;
 };
@@ -21,7 +22,6 @@ export const startChat = (history: ChatMessage[]) => {
   const aiInstance = getAI();
   chat = aiInstance.chats.create({
     model: 'gemini-2.5-flash',
-    // FIX: `systemInstruction` must be inside a `config` object.
     config: {
         systemInstruction: SYSTEM_INSTRUCTION,
     },
@@ -39,7 +39,6 @@ export const getChatResponse = async (message: string): Promise<string> => {
   
   try {
     if(!chat) throw new Error("Chat not initialized");
-    // FIX: `sendMessage` expects an object with a `message` property, not a string.
     const result: GenerateContentResponse = await chat.sendMessage({ message });
     return result.text;
   } catch (error) {
