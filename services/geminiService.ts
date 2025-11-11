@@ -1,5 +1,4 @@
-
-import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
+import { GoogleGenAI, Chat } from "@google/genai";
 import { ChatMessage } from '../types';
 
 let ai: GoogleGenAI | null = null;
@@ -24,7 +23,7 @@ export const startChat = (history: ChatMessage[]) => {
     systemInstruction: SYSTEM_INSTRUCTION,
     history: history.map(msg => ({
       role: msg.role,
-      parts: msg.content,
+      parts: [{ text: msg.content }],
     })),
   });
 };
@@ -36,7 +35,7 @@ export const getChatResponse = async (message: string): Promise<string> => {
   
   try {
     if(!chat) throw new Error("Chat not initialized");
-    const result = await chat.sendMessage({ message });
+    const result = await chat.sendMessage(message);
     return result.text;
   } catch (error) {
     console.error("Error getting chat response:", error);

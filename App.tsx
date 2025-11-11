@@ -35,6 +35,10 @@ const App: React.FC = () => {
             background-image: linear-gradient(to right, rgba(16, 185, 129, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
             background-size: 40px 40px;
           }
+          .mask-gradient {
+            -webkit-mask-image: linear-gradient(to bottom, white, transparent);
+            mask-image: linear-gradient(to bottom, white, transparent);
+          }
         `}
       </style>
 

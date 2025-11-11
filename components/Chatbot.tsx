@@ -15,7 +15,15 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    startChat([]); // Initialize chat history
+    try {
+      startChat([]); // Initialize chat history
+    } catch (error) {
+      console.error("Initialization Error:", error);
+      setMessages([{
+        role: 'model',
+        content: "Error de inicialización: La API Key de Gemini no se ha configurado correctamente. Por favor, verifica la configuración para poder interactuar conmigo."
+      }]);
+    }
   }, []);
 
   useEffect(() => {
