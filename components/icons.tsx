@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const FilmIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
@@ -29,20 +28,36 @@ export const WandIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
   </svg>
 );
 
-export const EditIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
+export const UsersIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+    <circle cx="9" cy="7" r="4"></circle>
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
   </svg>
 );
 
-export const VrIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
+
+export const RocketLaunchIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 12.5A2.5 2.5 0 0 1 4.5 10h1a2.5 2.5 0 0 1 0 5h-1A2.5 2.5 0 0 1 2 12.5Z"></path>
-    <path d="M22 12.5A2.5 2.5 0 0 0 19.5 10h-1a2.5 2.5 0 0 0 0 5h1A2.5 2.5 0 0 0 22 12.5Z"></path>
-    <path d="M8 10v5"></path>
-    <path d="M16 10v5"></path>
-    <path d="M12 10v5"></path>
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.1S5.21 15.66 4.5 16.5z"></path>
+    <path d="m12 15-3-3a9 9 0 0 1 3-12 9 9 0 0 1 12 3l-3 3"></path>
+    <path d="m12 15 6 6"></path>
+    <path d="m18 15-6-6"></path>
+  </svg>
+);
+
+export const BriefcaseIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+  </svg>
+);
+
+
+export const SparklesIcon = ({ className = 'w-6 h-6' }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m12 3-1.9 5.8-5.8 1.9 5.8 1.9 1.9 5.8 1.9-5.8 5.8-1.9-5.8-1.9z"></path>
   </svg>
 );
 

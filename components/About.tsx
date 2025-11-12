@@ -1,25 +1,43 @@
-
 import React from 'react';
+import { Testimonial } from '../types';
 
-const About: React.FC = () => {
+const testimonial: Testimonial = {
+    quote: "La colaboración con CINE & TV MAT HYPERMEDIA no solo aceleró nuestros lanzamientos de productos en un 300%, sino que su enfoque basado en IA nos dio una ventaja competitiva que no creíamos posible.",
+    name: "Ana Torres",
+    title: "Directora de Marketing Global",
+    company: "FutureCorp"
+};
+
+const SocialProof: React.FC = () => {
   return (
-    <section id="about" className="py-16 md:py-24 px-4 bg-slate-900/70 border-y border-cyan-500/20">
+    <section id="social-proof" className="py-16 md:py-24 px-4 bg-slate-950/50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-100 tracking-wide">Nuestra Esencia Hypermedia</h2>
-          <div className="mt-4 w-24 h-1 mx-auto bg-cyan-500 rounded-full"></div>
+            <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-widest">Con la confianza de líderes innovadores</h3>
+            <div className="mt-8 flex justify-center items-center gap-x-8 md:gap-x-12 lg:gap-x-16 grayscale opacity-60">
+                <p className="text-2xl font-bold">FutureCorp</p>
+                <p className="text-2xl font-bold">QuantumLeap</p>
+                <p className="text-2xl font-bold">InnovateX</p>
+                <p className="text-2xl font-bold hidden sm:block">Synergy</p>
+            </div>
         </div>
-        <div className="max-w-4xl mx-auto text-center">
-           <p className="text-lg md:text-xl text-slate-300/90 mb-6 animate-fade-in-up">
-            No solo creamos contenido; diseñamos universos. CINE & TV MAT HYPERMEDIA nació de la convicción de que cada historia merece ser contada de la manera más impactante posible. Somos un colectivo de artistas digitales, narradores visionarios y tecnólogos creativos dedicados a empujar los límites de la producción audiovisual.
-          </p>
-          <p className="text-lg md:text-xl text-slate-300/90 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            Nuestra filosofía se basa en la 'Hypermedia', la sinergia entre el arte cinematográfico clásico y las tecnologías emergentes. Desde la concepción de la idea hasta la post-producción final, cada proyecto es un lienzo para la innovación, donde la Realidad Virtual, los VFX fotorrealistas y las narrativas interactivas convergen para crear experiencias inolvidables.
-          </p>
+        
+        <div className="max-w-4xl mx-auto text-center bg-slate-800/40 border border-cyan-500/20 rounded-lg p-8 md:p-12 relative">
+            <div className="absolute top-0 left-0 -translate-x-4 -translate-y-4 text-cyan-500/30">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor"><path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746-2.491.392-4.396 2.547-4.604 4.853zm-10 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746-2.491.392-4.396 2.547-4.604 4.853z"/></svg>
+            </div>
+            <blockquote className="text-xl md:text-2xl text-slate-200 italic">
+                "{testimonial.quote}"
+            </blockquote>
+            <footer className="mt-6">
+                <p className="text-lg font-bold text-cyan-300">{testimonial.name}</p>
+                <p className="text-slate-400">{testimonial.title}, {testimonial.company}</p>
+            </footer>
         </div>
+
       </div>
     </section>
   );
 };
 
-export default About;
+export default SocialProof;

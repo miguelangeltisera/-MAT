@@ -6,7 +6,6 @@ let chat: Chat | null = null;
 
 const getAI = () => {
   if (!ai) {
-    // Explicitly read from the window object to prevent build-time replacement issues.
     const apiKey = (window as any).process?.env?.API_KEY;
     if (!apiKey) {
       throw new Error("Falta la clave de API de Gemini. Por favor, verifica la configuración de tu entorno y asegúrate de que la variable API_KEY esté definida.");
@@ -38,12 +37,17 @@ export const getChatResponse = async (message: string): Promise<string> => {
   }
   
   try {
-    if(!chat) throw new Error("Chat not initialized");
-    // Fix: The `sendMessage` method expects an object with a `message` property, not a plain string.
+    if(!chat) throw new Error("Chat no inicializado. El servicio de IA podría estar mal configurado.");
     const result: GenerateContentResponse = await chat.sendMessage({ message });
     return result.text;
   } catch (error) {
-    console.error("Error getting chat response:", error);
-    return "Lo siento, estoy experimentando una sobrecarga en mis circuitos. Por favor, inténtalo de nuevo en unos momentos.";
+    console.error("Error al comunicarse con la API de Gemini:", error);
+    let errorMessage = "Lo siento, estoy encontrando una malfunción en el sistema. Por favor, inténtalo de nuevo en unos momentos.";
+    if (error instanceof Error && (error.message.includes('API key') || error.message.includes('permission'))) {
+        errorMessage = "Parece que hay un problema con la configuración de la API. Por favor, contacta con el soporte técnico.";
+    } else if (error instanceof Error) {
+        errorMessage = `Ha ocurrido un error de comunicación. [${error.name}] Por favor, comprueba tu conexión de red y vuelve a intentarlo.`;
+    }
+    return errorMessage;
   }
 };

@@ -6,7 +6,7 @@ import { SendIcon } from './icons';
 const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> = ({ chatContainerRef }) => {
   const initialMessage: ChatMessage = {
     role: 'model',
-    content: "Saludos. Soy MAT-X, la interfaz de IA de CINE & TV MAT HYPERMEDIA. ¿En qué puedo ayudarte a crear hoy? Pregúntame sobre nuestros servicios o cualquier consulta sobre producción audiovisual."
+    content: "Hola. Soy MAT-X. Si tienes alguna pregunta rápida mientras exploras, no dudes en consultarme aquí."
   };
 
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
@@ -58,7 +58,7 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
     <div ref={chatContainerRef} id="chatbot" className="container mx-auto max-w-4xl py-16 md:py-24 px-4 scroll-mt-20">
       <div className="bg-slate-950/60 backdrop-blur-md border border-cyan-500/30 rounded-xl shadow-lg shadow-cyan-500/10 overflow-hidden flex flex-col h-[70vh]">
         <div className="p-4 border-b border-cyan-500/30 flex justify-between items-center">
-          <h3 className="text-xl font-bold text-cyan-300">Consola de Interacción: MAT-X</h3>
+          <h3 className="text-xl font-bold text-cyan-300">Asistente IA: MAT-X</h3>
           {!isConfigured && (
              <div className="flex items-center gap-2 text-sm text-red-400">
                 <span className="relative flex h-3 w-3">
