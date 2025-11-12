@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
+import About from './components/About';
 import Chatbot from './components/Chatbot';
 
 const App: React.FC = () => {
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         <main>
           <Hero onInteractClick={handleInteractClick} />
           <Services />
+          <About />
           <Chatbot chatContainerRef={chatContainerRef} />
         </main>
 
