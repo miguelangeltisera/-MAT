@@ -7,8 +7,8 @@ let chat: Chat | null = null;
 const getAI = () => {
   if (!ai) {
     const apiKey = (window as any).process?.env?.API_KEY;
-    if (!apiKey) {
-      throw new Error("Falta la clave de API de Gemini. Por favor, verifica la configuración de tu entorno y asegúrate de que la variable API_KEY esté definida.");
+    if (!apiKey || apiKey === 'TU_API_KEY_AQUÍ') {
+      throw new Error("ERROR: La clave de API de Gemini no está configurada. Por favor, abre el archivo `index.html`, busca la sección de script al final y reemplaza 'TU_API_KEY_AQUÍ' con tu clave real obtenida de Google AI Studio.");
     }
     ai = new GoogleGenAI({ apiKey: apiKey });
   }

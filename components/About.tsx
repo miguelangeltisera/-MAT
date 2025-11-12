@@ -2,23 +2,22 @@ import React from 'react';
 import { Testimonial } from '../types';
 
 const testimonial: Testimonial = {
-    quote: "La colaboración con CINE & TV MAT HYPERMEDIA no solo aceleró nuestros lanzamientos de productos en un 300%, sino que su enfoque basado en IA nos dio una ventaja competitiva que no creíamos posible.",
-    name: "Ana Torres",
-    title: "Directora de Marketing Global",
-    company: "FutureCorp"
+    quote: "Trabajar con CINE & TV MAT HYPERMEDIA fue una revelación. Su dominio de la IA y su enfoque creativo llevaron nuestro proyecto a un nivel completamente nuevo, superando todas las expectativas. Son el futuro de la producción audiovisual.",
+    name: "Donald Myerston",
+    title: "Productor Ejecutivo",
+    company: "KLICK"
 };
 
 const SocialProof: React.FC = () => {
   return (
-    <section id="social-proof" className="py-16 md:py-24 px-4 bg-slate-950/50">
+    <section id="social-proof" className="py-16 md:py-24 px-4 bg-sky-950">
       <div className="container mx-auto">
         <div className="text-center mb-12">
             <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-widest">Con la confianza de líderes innovadores</h3>
-            <div className="mt-8 flex justify-center items-center gap-x-8 md:gap-x-12 lg:gap-x-16 grayscale opacity-60">
-                <p className="text-2xl font-bold">FutureCorp</p>
-                <p className="text-2xl font-bold">QuantumLeap</p>
-                <p className="text-2xl font-bold">InnovateX</p>
-                <p className="text-2xl font-bold hidden sm:block">Synergy</p>
+            <div className="mt-8 flex flex-wrap justify-center items-center gap-x-8 md:gap-x-12 lg:gap-x-16 gap-y-4 text-slate-300/80">
+                <p className="text-xl font-semibold tracking-wider">Universidad Alejandro de Humboldt</p>
+                <p className="text-xl font-semibold tracking-wider">CNAC</p>
+                <p className="text-xl font-semibold tracking-wider">KLICK</p>
             </div>
         </div>
         
