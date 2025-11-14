@@ -1,5 +1,5 @@
 
-import React, { ErrorInfo, ReactNode } from "react";
+import React, { Component, ErrorInfo, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -9,9 +9,8 @@ interface State {
   hasError: boolean;
 }
 
-// Fix: Changed 'extends Component' to 'extends React.Component' to resolve a type error where 'this.props' was not accessible.
-// Also removed explicit 'public' access modifiers, which are default in TypeScript, for cleaner code.
-class ErrorBoundary extends React.Component<Props, State> {
+// Fix: Changed to extend 'Component' directly to resolve a type error where 'this.props' was not accessible.
+class ErrorBoundary extends Component<Props, State> {
   state: State = {
     hasError: false
   };

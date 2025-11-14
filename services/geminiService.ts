@@ -5,13 +5,13 @@ let ai: GoogleGenAI | null = null;
 let chat: Chat | null = null;
 
 try {
-  if (process.env.API_KEY && process.env.API_KEY !== 'TU_API_KEY_AQUÍ') {
-    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  } else {
-    console.warn("API_KEY no configurada. El chatbot estará deshabilitado.");
-  }
+  // Fix: The API key must be obtained from environment variables, not hardcoded.
+  // Initialize AI with the API key from environment variables.
+  ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 } catch (e) {
     console.error("Fallo al inicializar GoogleGenAI. ¿Está la API_KEY configurada correctamente?", e);
+    // Asegura que 'ai' sea nulo si la inicialización falla, para que la UI muestre el estado OFFLINE.
+    ai = null;
 }
 
 
