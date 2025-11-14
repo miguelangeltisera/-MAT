@@ -34,6 +34,17 @@ const SocialProof: React.FC = () => {
             </footer>
         </div>
 
+        <div className="mt-16 text-center">
+            <a 
+                href="https://miguelangel3.gumroad.com/l/vjgrpkh" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-cyan-500/10 border border-cyan-400/50 text-cyan-200 font-semibold py-4 px-8 rounded-lg hover:bg-cyan-500/20 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/20"
+            >
+                Aquí puede comprar nuestro largometraje documental "VESTIGIOS DE CONOCIMIENTOS ANCESTRALES",<br/> selección oficial en 12 festivales internacionales.
+            </a>
+        </div>
+
       </div>
     </section>
   );

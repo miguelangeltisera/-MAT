@@ -78,16 +78,35 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-slate-900 text-slate-200 min-h-screen font-sans">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900"></div>
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 animated-gradient-background"></div>
         <div 
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-10 animated-grid"
           style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2306b6d4\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}
         ></div>
       </div>
 
       <style>
         {`
+          @keyframes animated-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .animated-gradient-background {
+            background: linear-gradient(135deg, #020617, #082f49, #0f172a, #172554);
+            background-size: 300% 300%;
+            animation: animated-gradient 20s ease infinite;
+          }
+
+          @keyframes animated-grid {
+            from { background-position: 0 0; }
+            to { background-position: 60px 60px; }
+          }
+          .animated-grid {
+            animation: animated-grid 4s linear infinite;
+          }
+
           @keyframes fade-in-up {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }

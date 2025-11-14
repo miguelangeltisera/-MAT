@@ -4,13 +4,20 @@ import { ChatMessage } from '../types';
 let ai: GoogleGenAI | null = null;
 let chat: Chat | null = null;
 
+try {
+  if (process.env.API_KEY && process.env.API_KEY !== 'TU_API_KEY_AQUÍ') {
+    ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  } else {
+    console.warn("API_KEY no configurada. El chatbot estará deshabilitado.");
+  }
+} catch (e) {
+    console.error("Fallo al inicializar GoogleGenAI. ¿Está la API_KEY configurada correctamente?", e);
+}
+
+
 const getAI = () => {
   if (!ai) {
-    const apiKey = (window as any).process?.env?.API_KEY;
-    if (!apiKey || apiKey === 'TU_API_KEY_AQUÍ') {
-      throw new Error("ERROR: La clave de API de Gemini no está configurada. Por favor, abre el archivo `index.html`, busca la sección de script al final y reemplaza 'TU_API_KEY_AQUÍ' con tu clave real obtenida de Google AI Studio.");
-    }
-    ai = new GoogleGenAI({ apiKey: apiKey });
+    throw new Error("La instancia de GoogleGenAI no está inicializada. Revisa la configuración de la API_KEY.");
   }
   return ai;
 };

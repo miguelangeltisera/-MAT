@@ -25,21 +25,6 @@
 </head>
   <body>
     <div id="root"></div>
-    <script>
-      // Injects the API Key into a simulated process.env object for the browser environment.
-      // This makes the key accessible to the Gemini service while keeping the core TypeScript code clean.
-      window.process = {
-        env: {
-          // ====================================================================================
-          // PASO CRÍTICO: REEMPLAZA LA SIGUIENTE CLAVE CON TU PROPIA API KEY DE GOOGLE AI STUDIO
-          // 1. Ve a https://aistudio.google.com/app/apikey
-          // 2. Crea una nueva clave de API.
-          // 3. Pega tu clave aquí, reemplazando 'TU_API_KEY_AQUÍ'.
-          // ====================================================================================
-          API_KEY: 'TU_API_KEY_AQUÍ'
-        }
-      };
-    </script>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

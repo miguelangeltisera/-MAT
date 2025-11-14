@@ -17,9 +17,10 @@ const Chatbot: React.FC<{ chatContainerRef: React.RefObject<HTMLDivElement> }> =
 
   useEffect(() => {
     try {
-      startChat([]); // Initialize chat history
+      startChat([]); // Intenta inicializar el chat
+      setIsConfigured(true);
     } catch (error) {
-      console.error("Initialization Error:", error);
+      console.error("Error de inicialización del Chatbot:", error);
       setIsConfigured(false);
     }
   }, []);

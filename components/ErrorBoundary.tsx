@@ -1,5 +1,5 @@
 
-import React, { Component, ErrorInfo, ReactNode } from "react";
+import React, { ErrorInfo, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -9,20 +9,22 @@ interface State {
   hasError: boolean;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
+// Fix: Changed 'extends Component' to 'extends React.Component' to resolve a type error where 'this.props' was not accessible.
+// Also removed explicit 'public' access modifiers, which are default in TypeScript, for cleaner code.
+class ErrorBoundary extends React.Component<Props, State> {
+  state: State = {
     hasError: false
   };
 
-  public static getDerivedStateFromError(_: Error): State {
+  static getDerivedStateFromError(_: Error): State {
     return { hasError: true };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
   }
 
-  public render() {
+  render() {
     if (this.state.hasError) {
       return (
         <div className="bg-slate-900 text-slate-200 min-h-screen flex flex-col items-center justify-center font-sans">
